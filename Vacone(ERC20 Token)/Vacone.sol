@@ -5,7 +5,7 @@ import "./interface/IERC20.sol";
 
 contract Vacone is IERC20 {
     uint256 public totalSupply;
-
+    address public owner;
     mapping(address => uint256) public balanceOf;
     mapping(address => mapping(address => uint256)) public allowance;
 
@@ -15,7 +15,8 @@ contract Vacone is IERC20 {
 
     constructor(uint256 _totalSupply) {
         totalSupply = _totalSupply;
-        balanceOf[msg.sender] = totalSupply;
+        owner = msg.sender;
+        balanceOf[owner] = totalSupply;
     }
 
     modifier checkAmount(uint256 _amount) {
